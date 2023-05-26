@@ -1,0 +1,107 @@
+<nav class="navbar navbar-dark bg-dark" aria-label="Dark offcanvas navbar">
+  <div class="container-fluid">
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasNavbarDark"
+      aria-controls="offcanvasNavbarDark"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div
+      class="offcanvas offcanvas-start text-bg-dark"
+      tabindex="-1"
+      id="offcanvasNavbarDark"
+      aria-labelledby="offcanvasNavbarDarkLabel"
+    >
+      <div class="offcanvas-header">
+        <img
+          class="offcanvas-title w-50 m-auto"
+          id="offcanvasNavbarDarkLabel"
+          src="../../../assets/img/logo.png"
+        />
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          data-bs-dismiss="offcanvas"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="offcanvas-body">
+        <ul
+          class="navbar-nav justify-content-between flex-grow-1 pe-3 text-center"
+          *ngIf="usuario.data.role === 'user'; else admin"
+        >
+          <li class="nav-item">
+            <a [routerLink]="['/date/formulario']" class="nav-link"
+              ><i class="bi bi-calendar-plus"></i> Pedir cita</a
+            >
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/user/citas']" class="nav-link"
+              ><i class="bi bi-calendar-date"></i> Tus citas</a
+            >
+          </li>
+          <li class="nav-item">
+            <a [routerLink]="['/user/config']" class="nav-link">
+              <i class="bi bi-gear"></i> Configurar perfil</a
+            >
+          </li>
+          <li class="nav-item mt-5">
+            <a (click)="logout()" class="nav-link cursor-pointer"
+              ><i class="bi bi-box-arrow-left"></i> Cerrar sesión</a
+            >
+          </li>
+        </ul>
+        <ng-template #admin>
+          <ul
+            class="navbar-nav justify-content-between flex-grow-1 pe-3 text-center"
+          >
+            <li class="nav-item">
+              <a [routerLink]="['/admin/empleados']" class="nav-link"
+                ><i class="bi bi-file-person"></i> Empleados</a
+              >
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['/admin/servicios']" class="nav-link"
+                ><i class="bi bi-tools"></i> Servicios</a
+              >
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['/admin/fechas']" class="nav-link"
+                ><i class="bi bi-calendar2-day"></i> Fechas</a
+              >
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['/admin/horas']" class="nav-link"
+                ><i class="bi bi-clock"></i> Horas</a
+              >
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['/admin/citas']" class="nav-link"
+                ><i class="bi bi-calendar"></i> Citas</a
+              >
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['/admin/usuarios']" class="nav-link"
+                ><i class="bi bi-person"></i> Usuarios</a
+              >
+            </li>
+            <li class="nav-item">
+              <a [routerLink]="['/admin/config']" class="nav-link"
+                ><i class="bi bi-gear"></i> Configurar perfil</a
+              >
+            </li>
+            <li class="nav-item mt-5">
+              <a class="nav-link cursor-pointer" (click)="logout()"
+                ><i class="bi bi-box-arrow-left"></i> Cerrar sesión</a
+              >
+            </li>
+          </ul>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</nav>

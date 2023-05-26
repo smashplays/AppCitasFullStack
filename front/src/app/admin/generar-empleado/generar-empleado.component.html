@@ -1,0 +1,35 @@
+<div class="p-5 text-center">
+  <h1 class="text-center text-4xl text-[#FFFFFF] mb-3 font-bold">
+    CREAR EMPLEADO
+  </h1>
+  <form [formGroup]="employeeForm" class="mt-8" autocomplete="off">
+    <div class="mb-4">
+      <input
+        type="text"
+        name="name"
+        formControlName="name"
+        id="name"
+        placeholder="Nombre"
+        class="form-control bg-gray-100 text-gray-800 block w-50 mx-auto rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+      <div
+        *ngIf="
+          employeeForm.get('name').invalid && employeeForm.get('name').touched
+        "
+        class="text-white mt-2 bg-danger w-50 m-auto rounded p-1"
+      >
+        Nombre obligatorio
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center">
+      <button
+        class="m-auto buttonEmployee disabled:btn-dark btn btn-color disabled:btn-dark mt-5 px-5 py-2 w-50 rounded"
+        (click)="crear()"
+        [disabled]="validateForm()"
+      >
+        Crear empleado
+      </button>
+    </div>
+  </form>
+</div>

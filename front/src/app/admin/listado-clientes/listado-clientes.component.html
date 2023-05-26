@@ -1,0 +1,94 @@
+<div class="flex flex-col items-center justify-center mt-5">
+  <h1 class="text-center text-4xl text-[#FFFFFF] mt-5 font-bold">
+    LISTADO DE CITAS DE LA TIENDA
+  </h1>
+</div>
+
+<ng-template #notDates>
+  <h2 class="text-danger text-center mt-5">No tienes citas</h2>
+</ng-template>
+
+<div *ngIf="dates.data.length > 0; else notDates" class="rounded m-5">
+  <div>
+    <table class="table">
+      <thead class="bg-gray-50">
+        <tr>
+          <th
+            scope="col"
+            class="px-6 py-4 font-medium text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            Nº Cita
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-4 font-medium text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            Servicio
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-4 font-medium text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            Empleado y Cliente
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-4 font-medium text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            Fecha
+          </th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+        <tr *ngFor="let date of dates.data" class="hover:bg-green-800">
+          <td
+            class="px-6 py-4 text-gray-400 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            {{ date.id }}
+          </td>
+          <td class="px-6 py-4">
+            <div class="text-sm md:text-base lg:text-lg xl:text-xl">
+              <div class="text-gray-200">{{ date.service.name }}</div>
+            </div>
+          </td>
+          <td
+            class="px-6 py-4 text-gray-400 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            <span
+              class="items-center rounded-full text-xs text-gray-400 md:text-base lg:text-lg xl:text-xl"
+            >
+              <div class="text-gray-200">
+                Empleado: {{ date.employee.name }}
+              </div>
+              <hr class="mt-2 opacity-10" />
+              <div class="mt-2 text-gray-200">
+                Cliente: {{ date.user.name }}
+              </div>
+            </span>
+          </td>
+          <td
+            class="px-6 py-4 text-gray-400 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            {{ date.time | date : "dd-MM-yyyy | HH:mm" }}
+          </td>
+
+          <td class="px-6 py-4">
+            <div class="m-auto">
+              <i
+                class="bi bi-trash text-danger cursor-pointer"
+                (click)="delete(date.id)"
+                style="font-size: 30px"
+              ></i>
+              <i
+                class="bi bi-pencil-square ms-2 text-primary cursor-pointer"
+                (click)="update(date.id)"
+                style="font-size: 30px"
+              ></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

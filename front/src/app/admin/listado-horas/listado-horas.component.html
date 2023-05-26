@@ -1,0 +1,75 @@
+<div class="flex flex-col items-center justify-center mt-5">
+  <h1 class="text-center text-4xl text-[#FFFFFF] mt-5 font-bold">
+    LISTADO DE HORAS
+    <i
+      class="bi bi-person-add cursor-pointer text-success"
+      (click)="create()"
+    ></i>
+  </h1>
+  <ng-template #error>
+    <h2 class="text-danger text-center mt-5">No tienes horas</h2>
+  </ng-template>
+
+  <div class="rounded-lg m-5" *ngIf="hours.data.length > 0; else error">
+    <div>
+      <table class="table">
+        <thead class="bg-gray-50">
+          <tr>
+            <th
+              scope="col"
+              class="px-6 py-4 font-medium text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl"
+            >
+              Nombre
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-4 font-medium text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl"
+            >
+              Fecha
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-4 font-medium text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl"
+            >
+              Nº Empleado asociado
+            </th>
+            <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+          <tr *ngFor="let hour of hours.data">
+            <td class="px-6 py-4">
+              <div class="text-sm md:text-base lg:text-lg xl:text-xl">
+                <div class="text-gray-200">{{ hour.name }}</div>
+              </div>
+            </td>
+            <td
+              class="px-6 py-4 text-gray-400 text-sm md:text-base lg:text-lg xl:text-xl"
+            >
+              {{ hour.day.name }}
+            </td>
+            <td
+              class="px-6 py-4 text-gray-400 text-sm md:text-base lg:text-lg xl:text-xl"
+            >
+              {{ hour.day.employee_id }}
+            </td>
+            <td class="px-6 py-4">
+              <div class="m-auto">
+                <i
+                  class="bi bi-trash text-danger cursor-pointer"
+                  (click)="delete(hour.id)"
+                  style="font-size: 30px"
+                ></i>
+                <i
+                  class="bi bi-pencil-square ms-2 text-primary cursor-pointer"
+                  (click)="update(hour.id)"
+                  style="font-size: 30px"
+                ></i>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

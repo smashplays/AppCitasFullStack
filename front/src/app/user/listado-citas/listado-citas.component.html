@@ -1,0 +1,79 @@
+<div class="flex flex-col items-center justify-center mt-5">
+  <h1 class="text-center text-4xl text-[#FFFFFF] mt-5 font-bold">
+    LISTADO DE TUS CITAS
+  </h1>
+</div>
+
+<div class="rounded m-5" *ngIf="dates">
+  <div>
+    <table class="table">
+      <thead class="bg-gray-50">
+        <tr>
+          <th
+            scope="col"
+            class="px-6 py-4 font-medium text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            Nº Cita
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-4 font-medium text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            Servicio
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-4 font-medium text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            Empleado
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-4 font-medium text-gray-900 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            Fecha
+          </th>
+          <th scope="col" class="px-6 py-4 font-medium text-gray-900"></th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-100 border-t border-gray-100">
+        <tr *ngFor="let date of dates.data" class="hover:bg-green-800">
+          <td
+            class="px-6 py-4 text-gray-400 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            {{ date.id }}
+          </td>
+          <td class="px-6 py-4">
+            <div class="text-sm md:text-base lg:text-lg xl:text-xl">
+              <div class="text-gray-200">{{ date.service.name }}</div>
+            </div>
+          </td>
+          <td
+            class="px-6 py-4 text-gray-400 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            <span
+              class="inline-flex items-center rounded-full text-xs text-gray-400 md:text-base lg:text-lg xl:text-xl"
+            >
+              {{ date.employee.name }}
+            </span>
+          </td>
+          <td
+            class="px-6 py-4 text-gray-400 text-sm md:text-base lg:text-lg xl:text-xl"
+          >
+            {{ date.time | date : "dd-MM-yyyy | HH:mm" : "UTC" }}
+          </td>
+
+          <td class="px-6 py-4">
+            <div class="m-auto">
+              <i
+                class="bi bi-trash text-danger cursor-pointer"
+                (click)="delete(date.id)"
+                style="font-size: 30px"
+              ></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

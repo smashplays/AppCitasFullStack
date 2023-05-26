@@ -1,0 +1,59 @@
+<div class="p-5 text-center">
+  <h1 class="text-center text-4xl text-[#FFFFFF] mb-3 font-bold">
+    CREAR FECHA
+  </h1>
+  <form [formGroup]="fechaForm" class="mt-8" autocomplete="off">
+    <div class="mb-4">
+      <input
+        type="text"
+        name="name"
+        formControlName="name"
+        id="name"
+        placeholder="Ej: 18-05-2023..."
+        class="form-control bg-gray-100 text-gray-800 block w-50 mx-auto rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+      <div
+        *ngIf="fechaForm.get('name').invalid && fechaForm.get('name').touched"
+        class="text-white mt-2 bg-danger w-50 m-auto rounded p-1"
+      >
+        Nombre obligatorio o formato de fecha invalido
+      </div>
+    </div>
+    <div class="mb-6">
+      <label for="employee" class="form-label fw-bold fs-5"
+        >Selecciona un empleado...</label
+      >
+      <select
+        type="text"
+        formControlName="employee_id"
+        name="employee"
+        id="employee"
+        placeholder="Empleado"
+        value=""
+        class="form-select bg-gray-100 text-gray-800 block w-50 mx-auto rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      >
+        <option *ngFor="let employee of employees.data" [value]="employee.id">
+          {{ employee.name }}
+        </option>
+      </select>
+      <div
+        *ngIf="
+          fechaForm.get('employee_id').invalid &&
+          fechaForm.get('employee_id').touched
+        "
+        class="text-white mt-2 bg-danger w-50 m-auto rounded p-1"
+      >
+        Empleado obligatorio
+      </div>
+    </div>
+    <div class="flex items-center justify-center">
+      <button
+        class="m-auto buttonFecha disabled:btn-dark btn btn-color disabled:btn-dark mt-5 px-5 py-2 w-50 rounded"
+        (click)="crear()"
+        [disabled]="validateForm()"
+      >
+        Crear fecha
+      </button>
+    </div>
+  </form>
+</div>

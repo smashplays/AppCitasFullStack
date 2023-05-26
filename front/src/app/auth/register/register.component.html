@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card my-5">
+        <form
+          [formGroup]="userForm"
+          class="card-body cardbody-color p-lg-5"
+          autocomplete="off"
+        >
+          <div class="text-center">
+            <img
+              src="../../../assets/img/logo.png"
+              class="img-fluid my-3"
+              width="300px"
+              alt="profile"
+            />
+          </div>
+
+          <div class="mb-3">
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              formControlName="name"
+              aria-describedby="emailHelp"
+              placeholder="Nombre de usuario"
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+              placeholder="Correo electrónico"
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              formControlName="password"
+              placeholder="Contraseña"
+            />
+          </div>
+          <div class="mb-3">
+            <input
+              type="password"
+              class="form-control"
+              id="rpassword"
+              formControlName="rpassword"
+              placeholder="Repetir contraseña"
+            />
+          </div>
+          <div *ngIf="passwordMatch">
+            <p class="text-danger mt-2">The password are not equal</p>
+          </div>
+          <div class="text-center">
+            <button
+              type="button"
+              class="btn btn-color disabled:btn-dark px-5 mb-5 w-100"
+              (click)="register()"
+              [disabled]="validateForm()"
+            >
+              Registrar
+            </button>
+          </div>
+          <div id="emailHelp" class="form-text text-center mb-5 text-dark">
+            ¿Ya tienes una cuenta?
+            <a [routerLink]="['/auth/login']" class="text-dark fw-bold">
+              ¡Inicia sesión!</a
+            >
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

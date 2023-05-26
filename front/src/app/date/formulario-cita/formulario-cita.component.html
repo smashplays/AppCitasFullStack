@@ -1,0 +1,156 @@
+<div class="p-5 text-center" *ngIf="servicios">
+  <h1 class="text-center text-4xl text-[#FFFFFF] mb-3 font-bold">
+    DATOS DE LA CITA
+  </h1>
+  <form class="mt-8" autocomplete="off">
+    <ng-template #notServices>
+      <div class="text-danger">No hay servicios disponibles</div>
+    </ng-template>
+
+    <div class="mb-4">
+      <label for="service" class="form-label fw-bold fs-5"
+        >Selecciona un servicio...</label
+      >
+      <select
+        *ngIf="!errorService; else notServices"
+        type="text"
+        name="service"
+        id="service"
+        [(ngModel)]="servicioSeleccionado"
+        (change)="cambiarServicioSeleccionado()"
+        class="form-select bg-gray-100 text-gray-800 block w-50 mx-auto rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      >
+        <option *ngFor="let servicio of servicios.data" [value]="servicio.id">
+          {{ servicio.name }}
+        </option>
+      </select>
+
+      <!-- <div
+        *ngIf="
+          incidenciaForm.get('type').invalid &&
+          incidenciaForm.get('type').touched
+        "
+        class="text-white mt-2 bg-red-800 w-1/2 m-auto rounded-lg p-1"
+      >
+        Tipo obligatorio
+      </div> -->
+    </div>
+
+    <ng-template #notEmployees>
+      <div class="text-danger">
+        No hay empleados disponibles, selecciona otro servicio
+      </div>
+    </ng-template>
+    <div class="mb-4" *ngIf="progresoSeleccion >= 1">
+      <label for="employee" class="form-label fw-bold fs-5"
+        >Selecciona un empleado...</label
+      >
+      <select
+        #employee
+        *ngIf="!errorEmployee; else notEmployees"
+        type="text"
+        name="employee"
+        id="employee"
+        [(ngModel)]="empleadoSeleccionado"
+        placeholder="Empleado"
+        (change)="cambiarEmpleadoSeleccionado(employee.value)"
+        class="form-select bg-gray-100 text-gray-800 block w-50 mx-auto rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      >
+        <option *ngFor="let empleado of empleados.data" [value]="empleado.id">
+          {{ empleado.name }}
+        </option>
+      </select>
+      <!-- <div
+        *ngIf="
+          incidenciaForm.get('type').invalid &&
+          incidenciaForm.get('type').touched
+        "
+        class="text-white mt-2 bg-red-800 w-1/2 m-auto rounded-lg p-1"
+      >
+        Tipo obligatorio
+      </div> -->
+    </div>
+
+    <ng-template #notDays>
+      <div class="text-danger">
+        No hay días disponibles, selecciona otro empleado
+      </div>
+    </ng-template>
+    <div class="mb-4" *ngIf="progresoSeleccion >= 2">
+      <label for="date" class="form-label fw-bold fs-5"
+        >Selecciona una fecha...</label
+      >
+      <select
+        #date
+        *ngIf="!errorDate; else notDays"
+        type="text"
+        name="date"
+        id="date"
+        placeholder="Fecha"
+        [(ngModel)]="fechaSeleccionada"
+        (change)="cambiarFechaSeleccionada(date.value)"
+        class="form-select bg-gray-100 text-gray-800 block w-50 mx-auto rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      >
+        <option *ngFor="let fecha of fechasDisponibles.data" [value]="fecha.id">
+          {{ fecha.name }}
+        </option>
+      </select>
+
+      <!-- <div
+        *ngIf="
+          incidenciaForm.get('type').invalid &&
+          incidenciaForm.get('type').touched
+        "
+        class="text-white mt-2 bg-red-800 w-1/2 m-auto rounded-lg p-1"
+      >
+        Tipo obligatorio
+      </div> -->
+    </div>
+
+    <ng-template #notHours>
+      <div class="text-danger">
+        No hay horas disponibles, selecciona otra fecha
+      </div>
+    </ng-template>
+    <div class="mb-6" *ngIf="progresoSeleccion >= 3">
+      <label for="hour" class="form-label fw-bold fs-5"
+        >Selecciona una hora...</label
+      >
+      <select
+        *ngIf="!errorHour; else notHours"
+        type="text"
+        name="hour"
+        id="hour"
+        placeholder="Hora"
+        [(ngModel)]="horaSeleccionada"
+        (change)="cambiarHoraSeleccionada()"
+        class="form-select bg-gray-100 text-gray-800 block w-50 mx-auto rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      >
+        <option *ngFor="let hora of horasDisponibles.data" [value]="hora.id">
+          {{ hora.name }}
+        </option>
+      </select>
+      <!-- <div
+        *ngIf="
+          incidenciaForm.get('type').invalid &&
+          incidenciaForm.get('type').touched
+        "
+        class="text-white mt-2 bg-red-800 w-1/2 m-auto rounded-lg p-1"
+      >
+        Tipo obligatorio
+      </div> -->
+    </div>
+
+    <div
+      class="flex items-center justify-center"
+      *ngIf="progresoSeleccion >= 4"
+    >
+      <button
+        class="m-auto buttonDate btn btn-color mt-5 px-5 py-2 w-50 rounded-lg"
+        (click)="pedirCita()"
+      >
+        Pedir cita
+      </button>
+    </div>
+  </form>
+</div>

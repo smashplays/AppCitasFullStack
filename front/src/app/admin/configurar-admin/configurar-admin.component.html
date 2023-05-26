@@ -1,0 +1,90 @@
+<div class="p-5 text-center" *ngIf="user.data">
+  <h1 class="text-center text-4xl text-[#FFFFFF] mb-3 font-bold">
+    EDITAR ADMINISTRADOR
+  </h1>
+  <form [formGroup]="userForm" class="mt-8" autocomplete="off">
+    <div class="mb-4">
+      <input
+        type="text"
+        name="name"
+        id="name"
+        formControlName="name"
+        ngModel="{{ user.data.name }}"
+        placeholder="Nombre"
+        class="form-control bg-gray-100 text-gray-800 block w-50 mx-auto rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+      <div
+        *ngIf="userForm.get('name').invalid && userForm.get('name').touched"
+        class="text-white mt-2 bg-danger w-50 m-auto rounded p-1"
+      >
+        Nombre obligatorio
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <input
+        type="email"
+        name="email"
+        formControlName="email"
+        id="email"
+        ngModel="{{ user.data.email }}"
+        placeholder="Correo electrónico"
+        class="form-control bg-gray-100 text-gray-800 block w-50 mx-auto rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+      <div
+        *ngIf="userForm.get('email').invalid && userForm.get('email').touched"
+        class="text-white mt-2 bg-danger w-50 m-auto rounded p-1"
+      >
+        Email obligatorio
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <input
+        type="password"
+        name="password"
+        id="password"
+        formControlName="password"
+        placeholder="Nueva contraseña"
+        class="form-control bg-gray-100 text-gray-800 block w-50 mx-auto rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+      <div
+        *ngIf="
+          userForm.get('password').invalid && userForm.get('password').touched
+        "
+        class="text-white mt-2 bg-danger w-50 m-auto rounded p-1"
+      >
+        Contraseña obligatoria
+      </div>
+    </div>
+
+    <div class="mb-4">
+      <input
+        type="password"
+        name="rpassword"
+        formControlName="rpassword"
+        id="rpassword"
+        placeholder="Repetir nueva contraseña"
+        class="form-control bg-gray-100 text-gray-800 block w-50 mx-auto rounded-lg py-3 px-4 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      />
+      <div
+        *ngIf="
+          userForm.get('rpassword').invalid && userForm.get('rpassword').touched
+        "
+        class="text-white mt-2 bg-danger w-50 m-auto rounded p-1"
+      >
+        Repetir contraseña obligatorio
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center">
+      <button
+        class="m-auto buttonAdmin btn btn-color disabled:btn-dark mt-5 px-5 py-2 w-50 rounded"
+        [disabled]="validateForm()"
+        (click)="updateUser()"
+      >
+        Actualizar administrador
+      </button>
+    </div>
+  </form>
+</div>
